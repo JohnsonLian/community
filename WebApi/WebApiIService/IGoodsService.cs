@@ -25,30 +25,30 @@ namespace WebApiIService
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool Update(EditGoodsDto dto);
+        bool Update(UpdateGoodsDto dto);
         /// <summary>
         /// 搜索商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        List<GoodsRepo> Search(SearchGoodsDto dto);
+        List<GoodsRepo> GetList(SearchGoodsDto dto);
         /// <summary>
         /// 上架商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool Stack(UpDownStackDto dto);
+        bool UpStack(int [] id);
         /// <summary>
         /// 下架商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool DownStack(UpDownStackDto dto);
+        bool DownStack(int[] id);
         /// <summary>
         /// 查询商品详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        GoodsDetailDto Inquiry(int id);
+        GoodsDetailDto GetDetail(int id);
     }
 }

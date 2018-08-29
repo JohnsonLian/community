@@ -39,7 +39,7 @@ namespace WebApi.Api
         [Route("GetDetail")]
         public GoodsDetailDto GetDetail(int id)
         {
-            return _service.Inquiry(id);
+            return _service.GetDetail(id);
         }
 
         /// <summary>
@@ -48,10 +48,10 @@ namespace WebApi.Api
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("SearchGoods")]
-        public List<GoodsRepo> SearchGoods(SearchGoodsModel dto)
+        [Route("GetList")]
+        public List<GoodsRepo> GetList(SearchGoodsModel dto)
         {
-            return _service.Search(new SearchGoodsDto
+            return _service.GetList(new SearchGoodsDto
             {
                 Name = dto.Name,
                 Label_id = dto.Label_id,
@@ -68,8 +68,8 @@ namespace WebApi.Api
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("CreateGoods")]
-        public bool CreateGoods(GoodsModel dto)
+        [Route("Create")]
+        public bool Create(CreateGoodsModel dto)
         {
             return _service.Create(new CreateGoodsDto
             {
@@ -84,31 +84,25 @@ namespace WebApi.Api
         /// <summary>
         /// 上架商品
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Up")]
-        public bool Up(UpDownStackModel dto)
+        [Route("UpStack")]
+        public bool UpStack(int [] id)
         {
-            return _service.Stack(new UpDownStackDto
-            {
-                Id = dto.Id
-            });
+            return _service.UpStack(id);
         }
 
         /// <summary>
         /// 下架商品
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Down")]
-        public bool Down(UpDownStackModel dto)
+        [Route("DownStack")]
+        public bool DownStack(int[] id)
         {
-            return _service.DownStack(new UpDownStackDto
-            {
-                Id = dto.Id
-            });
+            return _service.DownStack(id);
         }
 
         // PUT api/<controller>/5
@@ -118,10 +112,10 @@ namespace WebApi.Api
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("UpdateGoods")]
-        public bool UpdateGoods(UpdateGoodsModel dto)
+        [Route("Update")]
+        public bool Update(UpdateGoodsModel dto)
         {
-            return _service.Update(new EditGoodsDto
+            return _service.Update(new UpdateGoodsDto
             {
                 Id = dto.Id,
                 Name = dto.Name,
@@ -138,8 +132,8 @@ namespace WebApi.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("DeleteGoods")]
-        public bool DeleteGoods(int id)
+        [Route("Delete")]
+        public bool Delete(int id)
         {
             return _service.Delete(id);
         }

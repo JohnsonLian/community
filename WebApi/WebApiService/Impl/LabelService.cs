@@ -37,8 +37,7 @@ namespace WebApiService.Impl
             {
                 Name = name,
             });
-            commodityDbContext.SaveChanges();
-            return true;
+            return commodityDbContext.SaveChanges()>0;
         }
         /// <summary>
         /// 删除商品标签
@@ -53,15 +52,14 @@ namespace WebApiService.Impl
                 throw new Exception("标签不存在");
             }
             entity.IsDeleted = true;
-            commodityDbContext.SaveChanges();
-            return true;
+            return commodityDbContext.SaveChanges()>0;
         }
         /// <summary>
         /// 修改商品标签
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool Edit(EditLabelDto dto)
+        public bool Update(UpdateLabelDto dto)
         {
             //若重名，返回false
             if (commodityDbContext.LabelRepos.Any(o => o.Name == dto.Name))
@@ -74,15 +72,14 @@ namespace WebApiService.Impl
                 throw new Exception("未选择标签");
             }
             entity.Name = dto.Name;
-            commodityDbContext.SaveChanges();
-            return true;
+            return commodityDbContext.SaveChanges()>0;
         }
         /// <summary>
         /// 查询商品标签
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public List<InquiryLabelDto> Inquiry()
+        public List<InquiryLabelDto> GetList()
         {
             //查询未被删除的商品标签
             var result = commodityDbContext.LabelRepos.Where(o => o.IsDeleted == false)

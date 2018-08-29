@@ -106,7 +106,7 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool Update(EditGoodsDto dto)
+        public bool Update(UpdateGoodsDto dto)
         {
             //若商品价格为非正数，返回false
             if (dto.Price <= 0)
@@ -158,15 +158,15 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool DownStack(UpDownStackDto dto)
+        public bool DownStack(int[] id)
         {
-            if (dto.Id == null)
+            if (id == null)
             {
                 throw new Exception("请求失败");
             }
-            for (var i = 0; i < dto.Id.Count; i++)
+            for (var i = 0; i < id.Length; i++)
             {
-                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == dto.Id[i]).FirstOrDefault();
+                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id[i]).FirstOrDefault();
                 if (entity == null)
                 {
                     throw new Exception("商品不存在");
@@ -188,15 +188,15 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool Stack(UpDownStackDto dto)
+        public bool UpStack(int[] id)
         {
-            if (dto.Id == null)
+            if (id == null)
             {
                 throw new Exception("请求失败");
             }
-            for (var i = 0; i < dto.Id.Count; i++)
+            for (var i = 0; i < id.Length; i++)
             {
-                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == dto.Id[i]).FirstOrDefault();
+                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id[i]).FirstOrDefault();
                 if (entity == null)
                 {
                     throw new Exception("商品不存在");
@@ -218,7 +218,7 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public GoodsDetailDto Inquiry(int id)
+        public GoodsDetailDto GetDetail(int id)
         {
             //获取商品信息
             var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id).Select(o => new GoodsDetailDto()
@@ -262,7 +262,7 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public List<GoodsRepo> Search(SearchGoodsDto dto)
+        public List<GoodsRepo> GetList(SearchGoodsDto dto)
         {
             var result = new List<GoodsRepo>();
             //标签id获取出错，请求失败

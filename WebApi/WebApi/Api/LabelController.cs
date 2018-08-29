@@ -34,10 +34,10 @@ namespace WebApi.Api
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLabel")]
-        public List<InquiryLabelDto> GetLabel()
+        [Route("GetList")]
+        public List<InquiryLabelDto> GetList()
         {
-            return _service.Inquiry();
+            return _service.GetList();
         }
 
         // POST api/<controller>
@@ -47,8 +47,8 @@ namespace WebApi.Api
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("CreateLabel")]
-        public bool CreateLabel(String name)
+        [Route("Create")]
+        public bool Create(String name)
         {
             return _service.Create(name);
         }
@@ -60,10 +60,10 @@ namespace WebApi.Api
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("UpdateLabel")]
-        public bool UpdateLabel(LabelModel dto)
+        [Route("Update")]
+        public bool Update(UpdateModel dto)
         {
-            return _service.Edit(new EditLabelDto
+            return _service.Update(new UpdateLabelDto
             {
                 Id = dto.Id,
                 Name = dto.Name
@@ -77,8 +77,8 @@ namespace WebApi.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("DeleteLabel")]
-        public bool DeleteLabel(int id)
+        [Route("Delete")]
+        public bool Delete(int id)
         {
             return _service.Delete(id);
         }

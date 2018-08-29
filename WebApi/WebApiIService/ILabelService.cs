@@ -24,11 +24,11 @@ namespace WebApiIService
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool Edit(EditLabelDto dto);
+        bool Update(UpdateLabelDto dto);
         /// <summary>
         /// 查询商品标签
         /// </summary>
         /// <returns></returns>
-        List<InquiryLabelDto> Inquiry();
+        List<InquiryLabelDto> GetList();
     }
 }
