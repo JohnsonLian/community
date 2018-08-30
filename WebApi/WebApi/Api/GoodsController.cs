@@ -49,7 +49,7 @@ namespace WebApi.Api
         /// <returns></returns>
         [HttpGet]
         [Route("GetList")]
-        public List<GoodsRepo> GetList(SearchGoodsModel dto)
+        public List<GoodsRepo> GetListForSelect(SearchGoodsModel dto)
         {
             //标签id获取出错，请求失败
             if (dto.Label_id < 0)
@@ -61,7 +61,7 @@ namespace WebApi.Api
             {
                 throw new Exception("请求失败");
             }
-            return _service.GetList(new SearchGoodsDto
+            return _service.GetListForSelect(new SearchGoodsDto
             {
                 Name = dto.Name,
                 Label_id = dto.Label_id,
@@ -134,13 +134,12 @@ namespace WebApi.Api
             return _service.DownStack(ids);
         }
 
-        // PUT api/<controller>/5
         /// <summary>
         /// 修改商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("Update")]
         public bool Update(UpdateGoodsModel dto)
         {
@@ -165,13 +164,12 @@ namespace WebApi.Api
             });
         }
 
-        // DELETE api/<controller>/5
         /// <summary>
         /// 删除商品
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpPost]
         [Route("Delete")]
         public bool Delete(int id)
         {

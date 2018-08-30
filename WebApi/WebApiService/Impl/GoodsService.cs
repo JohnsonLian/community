@@ -260,7 +260,7 @@ namespace WebApiService.Impl
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public List<GoodsRepo> GetList(SearchGoodsDto dto)
+        public List<GoodsRepo> GetListForSelect(SearchGoodsDto dto)
         {
             var result = new List<GoodsRepo>();
             var name = new MySqlParameter();

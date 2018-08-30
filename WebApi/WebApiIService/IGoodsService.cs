@@ -31,7 +31,7 @@ namespace WebApiIService
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        List<GoodsRepo> GetList(SearchGoodsDto dto);
+        List<GoodsRepo> GetListForSelect(SearchGoodsDto dto);
         /// <summary>
         /// 上架商品
         /// </summary>

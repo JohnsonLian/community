@@ -53,13 +53,12 @@ namespace WebApi.Api
             return _service.Create(name);
         }
 
-        // PUT api/<controller>
         /// <summary>
         /// 修改商品标签
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("Update")]
         public bool Update(UpdateModel dto)
         {
@@ -70,13 +69,12 @@ namespace WebApi.Api
             });
         }
 
-        // DELETE api/<controller>
         /// <summary>
         /// 删除商品标签
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpPost]
         [Route("Delete")]
         public bool Delete(int id)
         {
