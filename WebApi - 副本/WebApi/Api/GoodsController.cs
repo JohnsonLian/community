@@ -37,9 +37,9 @@ namespace WebApi.Api
         /// <returns></returns>
         [HttpGet]
         [Route("GetDetail")]
-        public GoodsDetailDto GetDetail(int id)
+        public GoodsDetailDto GetDetailById(int id)
         {
-            return _service.GetDetail(id);
+            return _service.GetDetailById(id);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace WebApi.Api
                 Name = dto.Name,
                 Label_id = dto.Label_id,
                 State = dto.State,
-                Page = dto.Page,
+                PageIndex = dto.PageIndex,
                 PageSize = dto.PageSize
             });
         }
@@ -87,8 +87,7 @@ namespace WebApi.Api
                 throw new Exception("商品价格不能为非正数");
             }
             //若标签大于5个，抛出异常
-            if (dto.Tags == null) dto.Tags = new List<int>();
-            if (dto.Tags.Count > 5)
+            if (dto.Tags.Length > 5)
             {
                 throw new Exception("商品的标签数不能大于5个");
             }
@@ -109,7 +108,7 @@ namespace WebApi.Api
         /// <returns></returns>
         [HttpPost]
         [Route("UpStack")]
-        public bool UpStack(List<int> ids)
+        public bool UpStack(int[] ids)
         {
             if (ids == null)
             {
@@ -125,7 +124,7 @@ namespace WebApi.Api
         /// <returns></returns>
         [HttpPost]
         [Route("DownStack")]
-        public bool DownStack(List<int> ids)
+        public bool DownStack(int[] ids)
         {
             if (ids == null)
             {
@@ -149,8 +148,7 @@ namespace WebApi.Api
                 throw new Exception("商品价格不能为非正数");
             }
             //若标签大于5个，返回false
-            if (dto.Tags == null) dto.Tags = new List<int>();
-            if (dto.Tags.Count > 5)
+            if (dto.Tags.Length > 5)
             {
                 throw new Exception("商品的标签数不能大于5个");
             }

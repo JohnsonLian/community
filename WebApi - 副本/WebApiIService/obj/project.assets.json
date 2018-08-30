@@ -4166,11 +4166,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiIService\\WebApiIService.csproj",
+      "projectUniqueName": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiIService\\WebApiIService.csproj",
       "projectName": "WebApiIService",
-      "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiIService\\WebApiIService.csproj",
+      "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiIService\\WebApiIService.csproj",
       "packagesPath": "C:\\Users\\ThinkPad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiIService\\obj\\",
+      "outputPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiIService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4189,8 +4189,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiRepository\\WebApiRepository.csproj": {
-              "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiRepository\\WebApiRepository.csproj"
+            "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiRepository\\WebApiRepository.csproj": {
+              "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiRepository\\WebApiRepository.csproj"
             }
           }
         }

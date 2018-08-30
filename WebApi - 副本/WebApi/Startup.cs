@@ -55,8 +55,8 @@ namespace WebApi
             });
 
             //DbContext
-            var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<CommodityDbContext>(options => options.UseMySql(connection));
+            //var connection = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<CommodityDbContext>(options => options.UseMySql(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<ILabelService, LabelService>();

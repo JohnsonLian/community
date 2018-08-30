@@ -23,7 +23,7 @@ namespace WebApi.Models
         /// <summary>
         /// 当前页数
         /// </summary>
-        public int Page { get; set; }
+        public int PageIndex { get; set; }
         /// <summary>
         /// 一页可容纳条数
         /// </summary>

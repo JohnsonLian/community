@@ -22,3 +22,15 @@ C:\Users\ThinkPad\gitRepo\community\WebApi\WebApiIService\obj\Debug\netcoreapp2.
 C:\Users\ThinkPad\gitRepo\community\WebApi\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.csproj.CopyComplete
 C:\Users\ThinkPad\gitRepo\community\WebApi\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.dll
 C:\Users\ThinkPad\gitRepo\community\WebApi\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.pdb
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\bin\Debug\netcoreapp2.1\WebApiIService.deps.json
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\bin\Debug\netcoreapp2.1\WebApiIService.dll
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\bin\Debug\netcoreapp2.1\WebApiIService.pdb
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\bin\Debug\netcoreapp2.1\WebApiRepository.dll
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\bin\Debug\netcoreapp2.1\WebApiRepository.pdb
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.csprojAssemblyReference.cache
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.csproj.CoreCompileInputs.cache
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.AssemblyInfoInputs.cache
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.AssemblyInfo.cs
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.csproj.CopyComplete
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.dll
+C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiIService\obj\Debug\netcoreapp2.1\WebApiIService.pdb
