@@ -33,7 +33,7 @@ namespace WebApiIService.Dto
         /// <summary>
         /// 标签
         /// </summary>
-        public List<String> Tag { get; set; }
+        public List<string> Tags { get; set; }
         /// <summary>
         /// 商品状态
         /// </summary>

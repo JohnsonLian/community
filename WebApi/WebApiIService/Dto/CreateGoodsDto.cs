@@ -29,6 +29,6 @@ namespace WebApiIService.Dto
         /// <summary>
         /// 商品标签
         /// </summary>
-        public List<int> Tag { get; set; }
+        public List<int> Tags { get; set; }
     }
 }

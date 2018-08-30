@@ -22,42 +22,42 @@
             <param name="id">id</param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.SearchGoods(WebApi.Models.SearchGoodsModel)">
+        <member name="M:WebApi.Api.GoodsController.GetList(WebApi.Models.SearchGoodsModel)">
             <summary>
             搜索商品
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.CreateGoods(WebApi.Models.GoodsModel)">
+        <member name="M:WebApi.Api.GoodsController.Create(WebApi.Models.CreateGoodsModel)">
             <summary>
             新增商品
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.Up(WebApi.Models.UpDownStackModel)">
+        <member name="M:WebApi.Api.GoodsController.UpStack(System.Collections.Generic.List{System.Int32})">
             <summary>
             上架商品
             </summary>
-            <param name="dto"></param>
+            <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.Down(WebApi.Models.UpDownStackModel)">
+        <member name="M:WebApi.Api.GoodsController.DownStack(System.Collections.Generic.List{System.Int32})">
             <summary>
             下架商品
             </summary>
-            <param name="dto"></param>
+            <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.UpdateGoods(WebApi.Models.UpdateGoodsModel)">
+        <member name="M:WebApi.Api.GoodsController.Update(WebApi.Models.UpdateGoodsModel)">
             <summary>
             修改商品
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.GoodsController.DeleteGoods(System.Int32)">
+        <member name="M:WebApi.Api.GoodsController.Delete(System.Int32)">
             <summary>
             删除商品
             </summary>
@@ -75,76 +75,61 @@
             </summary>
             <param name="labelService"></param>
         </member>
-        <member name="M:WebApi.Api.LabelController.GetLabel">
+        <member name="M:WebApi.Api.LabelController.GetList">
             <summary>
             查询商品标签
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.LabelController.CreateLabel(System.String)">
+        <member name="M:WebApi.Api.LabelController.Create(System.String)">
             <summary>
             新增商品标签
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.LabelController.UpdateLabel(WebApi.Models.LabelModel)">
+        <member name="M:WebApi.Api.LabelController.Update(WebApi.Models.UpdateModel)">
             <summary>
             修改商品标签
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Api.LabelController.DeleteLabel(System.Int32)">
+        <member name="M:WebApi.Api.LabelController.Delete(System.Int32)">
             <summary>
             删除商品标签
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:WebApi.Models.GoodsModel">
+        <member name="T:WebApi.Models.CreateGoodsModel">
             <summary>
             商品Model
             </summary>
         </member>
-        <member name="P:WebApi.Models.GoodsModel.Number">
+        <member name="P:WebApi.Models.CreateGoodsModel.Number">
             <summary>
             商品编号
             </summary>
         </member>
-        <member name="P:WebApi.Models.GoodsModel.Name">
+        <member name="P:WebApi.Models.CreateGoodsModel.Name">
             <summary>
             商品名称
             </summary>
         </member>
-        <member name="P:WebApi.Models.GoodsModel.Price">
+        <member name="P:WebApi.Models.CreateGoodsModel.Price">
             <summary>
             商品单价
             </summary>
         </member>
-        <member name="P:WebApi.Models.GoodsModel.Describe">
+        <member name="P:WebApi.Models.CreateGoodsModel.Describe">
             <summary>
             商品描述
             </summary>
         </member>
-        <member name="P:WebApi.Models.GoodsModel.Tag">
+        <member name="P:WebApi.Models.CreateGoodsModel.Tags">
             <summary>
             商品标签
-            </summary>
-        </member>
-        <member name="T:WebApi.Models.LabelModel">
-            <summary>
-            商品标签Model
-            </summary>
-        </member>
-        <member name="P:WebApi.Models.LabelModel.Id">
-            <summary>
-            商品标签id
-            </summary>
-        </member>
-        <member name="P:WebApi.Models.LabelModel.Name">
-            <summary>
-            商品标签名称
             </summary>
         </member>
         <member name="T:WebApi.Models.SearchGoodsModel">
@@ -202,19 +187,24 @@
             商品描述
             </summary>
         </member>
-        <member name="P:WebApi.Models.UpdateGoodsModel.Tag">
+        <member name="P:WebApi.Models.UpdateGoodsModel.Tags">
             <summary>
             商品标签
             </summary>
         </member>
-        <member name="T:WebApi.Models.UpDownStackModel">
+        <member name="T:WebApi.Models.UpdateModel">
             <summary>
-            要上架或要下架的商品的id
+            商品标签Model
             </summary>
         </member>
-        <member name="P:WebApi.Models.UpDownStackModel.Id">
+        <member name="P:WebApi.Models.UpdateModel.Id">
             <summary>
-            要上架或要下架的商品id
+            商品标签id
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateModel.Name">
+            <summary>
+            商品标签名称
             </summary>
         </member>
     </members>

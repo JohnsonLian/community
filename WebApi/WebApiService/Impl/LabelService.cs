@@ -28,7 +28,7 @@ namespace WebApiService.Impl
         /// <returns></returns>
         public bool Create(String name)
         {
-            //若重名，返回false
+            //若重名，抛出异常
             if (commodityDbContext.LabelRepos.Any(o => o.Name == name))
             {
                 throw new Exception("标签已存在");
@@ -61,7 +61,7 @@ namespace WebApiService.Impl
         /// <returns></returns>
         public bool Update(UpdateLabelDto dto)
         {
-            //若重名，返回false
+            //若重名，抛出异常
             if (commodityDbContext.LabelRepos.Any(o => o.Name == dto.Name))
             {
                 throw new Exception("标签名重复");

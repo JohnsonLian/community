@@ -51,6 +51,16 @@ namespace WebApi.Api
         [Route("GetList")]
         public List<GoodsRepo> GetList(SearchGoodsModel dto)
         {
+            //标签id获取出错，请求失败
+            if (dto.Label_id < 0)
+            {
+                throw new Exception("请求失败");
+            }
+            //商品状态获取出错，请求失败,0表示全部状态，1表示待上架，2表示已上架，3表示已下架
+            if (dto.State != 0 && dto.State != 1 && dto.State != 2 && dto.State != 3)
+            {
+                throw new Exception("请求失败");
+            }
             return _service.GetList(new SearchGoodsDto
             {
                 Name = dto.Name,
@@ -71,38 +81,57 @@ namespace WebApi.Api
         [Route("Create")]
         public bool Create(CreateGoodsModel dto)
         {
+            //商品价格为非正数，抛出异常
+            if (dto.Price <= 0)
+            {
+                throw new Exception("商品价格不能为非正数");
+            }
+            //若标签大于5个，抛出异常
+            if (dto.Tags == null) dto.Tags = new List<int>();
+            if (dto.Tags.Count > 5)
+            {
+                throw new Exception("商品的标签数不能大于5个");
+            }
             return _service.Create(new CreateGoodsDto
             {
                 Number = dto.Number,
                 Name = dto.Name,
                 Price = dto.Price,
                 Describe = dto.Describe,
-                Tag = dto.Tag
+                Tags = dto.Tags
             });
         }
 
         /// <summary>
         /// 上架商品
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ids"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("UpStack")]
-        public bool UpStack(int [] id)
+        public bool UpStack(List<int> ids)
         {
-            return _service.UpStack(id);
+            if (ids == null)
+            {
+                throw new Exception("请求失败");
+            }
+            return _service.UpStack(ids);
         }
 
         /// <summary>
         /// 下架商品
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ids"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("DownStack")]
-        public bool DownStack(int[] id)
+        public bool DownStack(List<int> ids)
         {
-            return _service.DownStack(id);
+            if (ids == null)
+            {
+                throw new Exception("请求失败");
+            }
+            return _service.DownStack(ids);
         }
 
         // PUT api/<controller>/5
@@ -115,13 +144,24 @@ namespace WebApi.Api
         [Route("Update")]
         public bool Update(UpdateGoodsModel dto)
         {
+            //若商品价格为非正数，返回false
+            if (dto.Price <= 0)
+            {
+                throw new Exception("商品价格不能为非正数");
+            }
+            //若标签大于5个，返回false
+            if (dto.Tags == null) dto.Tags = new List<int>();
+            if (dto.Tags.Count > 5)
+            {
+                throw new Exception("商品的标签数不能大于5个");
+            }
             return _service.Update(new UpdateGoodsDto
             {
                 Id = dto.Id,
                 Name = dto.Name,
                 Price = dto.Price,
                 Describe = dto.Describe,
-                Tag = dto.Tag
+                Tags = dto.Tags
             });
         }
 

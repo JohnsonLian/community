@@ -37,13 +37,13 @@ namespace WebApiIService
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool UpStack(int [] id);
+        bool UpStack(List<int> ids);
         /// <summary>
         /// 下架商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        bool DownStack(int[] id);
+        bool DownStack(List<int> ids);
         /// <summary>
         /// 查询商品详情
         /// </summary>

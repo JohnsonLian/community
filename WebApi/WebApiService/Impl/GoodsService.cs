@@ -32,54 +32,48 @@ namespace WebApiService.Impl
         /// <returns></returns>
         public bool Create(CreateGoodsDto dto)
         {
-            //商品价格为非正数，返回false
-            if (dto.Price <= 0)
-            {
-                throw new Exception("商品价格不能为非正数");
-            }
-            else
+            var tran = commodityDbContext.Database.BeginTransaction();
+            try
             {
                 dto.Price = System.Decimal.Round(System.Decimal.Floor(dto.Price * 100) / 100, 2);
-            }
-            //若商品编号重复，返回false
-            if (commodityDbContext.GoodsRepos.Any(o => o.Number == dto.Number))
-            {
-                throw new Exception("商品编号重复");
-            }
-            //若标签大于5个，返回false
-            if (dto.Tag == null) dto.Tag = new List<int>();
-            if (dto.Tag.Count > 5)
-            {
-                throw new Exception("商品的标签数不能大于5个");
-            }
-            //判断标签的id是否存在
-            if (commodityDbContext.LabelRepos.Where(o => dto.Tag.Contains(o.Id)).Count() != dto.Tag.Count)
-            {
-                throw new Exception("有标签不存在");
-            }
-            GoodsRepo goods = new GoodsRepo()
-            {
-                Number = dto.Number,
-                Name = dto.Name,
-                Pinyin = PinYin.ConvertCh(dto.Name).ToLower(),
-                Price = dto.Price,
-                Describe = dto.Describe,
-                State = "待上架",
-                Updatetime = DateTime.Now
-            };
-            commodityDbContext.GoodsRepos.Add(goods);
-            commodityDbContext.SaveChanges();
-            //往label_goods表中添加该商品的标签
-            for (var j = 0; j < dto.Tag.Count; j++)
-            {
-                commodityDbContext.LabelGoodsRepos.Add(new LabelGoodsRepo()
+                //若商品编号重复，返回false
+                if (commodityDbContext.GoodsRepos.Any(o => o.Number == dto.Number))
                 {
-                    Goods_id = goods.Id,
-                    Label_id = dto.Tag[j]
-                });
+                    throw new Exception("商品编号重复");
+                }
+                //判断标签的id是否存在
+                if (commodityDbContext.LabelRepos.Where(o => dto.Tags.Contains(o.Id)).Count() != dto.Tags.Count)
+                {
+                    throw new Exception("有标签不存在");
+                }
+                GoodsRepo goods = new GoodsRepo()
+                {
+                    Number = dto.Number,
+                    Name = dto.Name,
+                    Pinyin = PinYin.ConvertCh(dto.Name).ToLower(),
+                    Price = dto.Price,
+                    Describe = dto.Describe,
+                    State = "待上架",
+                    Updatetime = DateTime.Now
+                };
+                commodityDbContext.GoodsRepos.Add(goods);
                 commodityDbContext.SaveChanges();
+                //往label_goods表中添加该商品的标签
+                foreach (var Tag in dto.Tags)
+                {
+                    commodityDbContext.LabelGoodsRepos.Add(new LabelGoodsRepo()
+                    {
+                        Goods_id = goods.Id,
+                        Label_id = Tag
+                    });
+                }
+                return commodityDbContext.SaveChanges()>0;
             }
-            return true;
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
         }
         /// <summary>
         /// 删除商品
@@ -88,18 +82,37 @@ namespace WebApiService.Impl
         /// <returns></returns>
         public bool Delete(int id)
         {
-            //在Goods表里删除商品
-            var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id).FirstOrDefault();
-            if (entity == null)
+            var tran = commodityDbContext.Database.BeginTransaction();
+            try
             {
-                throw new Exception("商品不存在");
+                //判断商品是否存在
+                if (commodityDbContext.GoodsRepos.Any(o => o.Id == id))
+                {
+                    throw new Exception("商品不存在");
+                }
+                //在Goods表里删除商品
+                commodityDbContext.Database.ExecuteSqlCommand(@"delete from goods where id = @p0", id);
+                //在label_goods表里删除记录
+                commodityDbContext.Database.ExecuteSqlCommand(@"delete from label_goods where goods_id = @p0", id);
+                return commodityDbContext.SaveChanges() > 0;
+
+                ////在Goods表里删除商品
+                //var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id).FirstOrDefault();
+                //if (entity == null)
+                //{
+                //    throw new Exception("商品不存在");
+                //}
+                //commodityDbContext.GoodsRepos.Remove(entity);
+                ////在label_goods表里删除记录
+                //var result = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == id).ToList();
+                //commodityDbContext.LabelGoodsRepos.RemoveRange(result);
+                //return commodityDbContext.SaveChanges() > 0;
             }
-            commodityDbContext.GoodsRepos.Remove(entity);
-            //在label_goods表里删除记录
-            var result = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == id).ToList();
-            commodityDbContext.LabelGoodsRepos.RemoveRange(result);
-            commodityDbContext.SaveChanges();
-            return true;
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
         }
         /// <summary>
         /// 修改商品
@@ -108,110 +121,95 @@ namespace WebApiService.Impl
         /// <returns></returns>
         public bool Update(UpdateGoodsDto dto)
         {
-            //若商品价格为非正数，返回false
-            if (dto.Price <= 0)
-            {
-                throw new Exception("商品价格不能为非正数");
-            }
-            else
+            var tran = commodityDbContext.Database.BeginTransaction();
+            try
             {
                 dto.Price = System.Decimal.Round(System.Decimal.Floor(dto.Price * 100) / 100, 2);
-            }
-            //若标签大于5个，返回false
-            if (dto.Tag == null) dto.Tag = new List<int>();
-            if (dto.Tag.Count > 5)
-            {
-                throw new Exception("商品的标签数不能大于5个");
-            }
-            //判断标签的id是否存在
-            if (commodityDbContext.LabelRepos.Where(o => dto.Tag.Contains(o.Id)).Count() != dto.Tag.Count)
-            {
-                throw new Exception("有标签不存在");
-            }
-            //修改Goods表
-            var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == dto.Id).FirstOrDefault();
-            if (entity == null)
-            {
-                throw new Exception("商品不存在");
-            }
-            entity.Name = dto.Name;
-            entity.Pinyin = PinYin.ConvertCh(dto.Name).ToLower();
-            entity.Price = dto.Price;
-            entity.Describe = dto.Describe;
-            //删除label_goods表中所有与该商品有关的记录
-            var result = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == dto.Id).ToList();
-            commodityDbContext.LabelGoodsRepos.RemoveRange(result);
-            //往label_goods表中添加该商品的标签
-            for (var j = 0; j < dto.Tag.Count; j++)
-            {
-                commodityDbContext.LabelGoodsRepos.Add(new LabelGoodsRepo()
+                //判断标签的id是否存在
+                if (commodityDbContext.LabelRepos.Where(o => dto.Tags.Contains(o.Id)).Count() != dto.Tags.Count)
                 {
-                    Goods_id = entity.Id,
-                    Label_id = dto.Tag[j]
-                });
+                    throw new Exception("有标签不存在");
+                }
+                //修改Goods表
+                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == dto.Id).FirstOrDefault();
+                if (entity == null)
+                {
+                    throw new Exception("商品不存在");
+                }
+                entity.Name = dto.Name;
+                entity.Pinyin = PinYin.ConvertCh(dto.Name).ToLower();
+                entity.Price = dto.Price;
+                entity.Describe = dto.Describe;
+                //删除label_goods表中所有与该商品有关的记录
+                //commodityDbContext.Database.ExecuteSqlCommand(@"delete from label_goods where goods_id = @p0", dto.Id);
+                var result = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == dto.Id).ToList();
+                commodityDbContext.LabelGoodsRepos.RemoveRange(result);
+                //往label_goods表中添加该商品的标签
+                foreach(var Tag in dto.Tags)
+                {
+                    commodityDbContext.LabelGoodsRepos.Add(new LabelGoodsRepo()
+                    {
+                        Goods_id = entity.Id,
+                        Label_id = Tag
+                    });
+                }
+                return commodityDbContext.SaveChanges()>0;
             }
-            commodityDbContext.SaveChanges();
-            return true;
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
         }
         /// <summary>
         /// 下架商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool DownStack(int[] id)
+        public bool DownStack(List<int> ids)
         {
-            if (id == null)
+            var entitys = commodityDbContext.GoodsRepos.Where(o => ids.Contains(o.Id)).ToList();
+            if(entitys.Count != ids.Count)
             {
-                throw new Exception("请求失败");
+                throw new Exception("商品不存在");
             }
-            for (var i = 0; i < id.Length; i++)
+            foreach(var entity in entitys)
             {
-                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id[i]).FirstOrDefault();
-                if (entity == null)
-                {
-                    throw new Exception("商品不存在");
-                }
-                if (entity.State == "已上架")
+                if(entity.State == "已上架")
                 {
                     entity.State = "已下架";
-                    commodityDbContext.SaveChanges();
                 }
                 else
                 {
                     throw new Exception("已下架，不要重复下架");
                 }
             }
-            return true;
+            return commodityDbContext.SaveChanges()>0;
         }
         /// <summary>
         /// 上架商品
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public bool UpStack(int[] id)
+        public bool UpStack(List<int> ids)
         {
-            if (id == null)
+            var entitys = commodityDbContext.GoodsRepos.Where(o => ids.Contains(o.Id)).ToList();
+            if (entitys.Count != ids.Count)
             {
-                throw new Exception("请求失败");
+                throw new Exception("商品不存在");
             }
-            for (var i = 0; i < id.Length; i++)
+            foreach (var entity in entitys)
             {
-                var entity = commodityDbContext.GoodsRepos.Where(o => o.Id == id[i]).FirstOrDefault();
-                if (entity == null)
-                {
-                    throw new Exception("商品不存在");
-                }
                 if (entity.State == "待上架" || entity.State == "已下架")
                 {
                     entity.State = "已上架";
-                    commodityDbContext.SaveChanges();
                 }
                 else
                 {
                     throw new Exception("已上架，不要重复上架");
                 }
             }
-            return true;
+            return commodityDbContext.SaveChanges() > 0;
         }
         /// <summary>
         /// 查询商品详情
@@ -237,23 +235,23 @@ namespace WebApiService.Impl
                 throw new Exception("未选择商品");
             }
             //获取该商品的标签id
-            var result = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == id).Select(o => new LabelGoodsDto()
+            var results = commodityDbContext.LabelGoodsRepos.Where(o => o.Goods_id == id).Select(o => new LabelGoodsDto()
             {
                 Goods_id = o.Goods_id,
                 Label_id = o.Label_id
             }).ToList();
             //获取标签名
             var str = new List<string>();
-            for (var i = 0; i < result.Count; i++)
+            foreach(var result in results)
             {
-                var temp = commodityDbContext.LabelRepos.Where(o => o.Id == result[i].Label_id).Select(o => new InquiryLabelDto()
+                var temp = commodityDbContext.LabelRepos.Where(o => o.Id == result.Label_id).Select(o => new InquiryLabelDto()
                 {
                     Id = o.Id,
                     Name = o.Name
                 }).FirstOrDefault();
                 str.Add(temp.Name);
             }
-            entity.Tag = str;
+            entity.Tags = str;
             return entity;
         }
 
@@ -265,16 +263,6 @@ namespace WebApiService.Impl
         public List<GoodsRepo> GetList(SearchGoodsDto dto)
         {
             var result = new List<GoodsRepo>();
-            //标签id获取出错，请求失败
-            if (dto.Label_id < 0)
-            {
-                throw new Exception("请求失败");
-            }
-            //商品状态获取出错，请求失败,0表示全部状态，1表示待上架，2表示已上架，3表示已下架
-            if (dto.State != 0 && dto.State != 1 && dto.State != 2 && dto.State != 3)
-            {
-                throw new Exception("请求失败");
-            }
             var name = new MySqlParameter();
             var sel = "select goods.id,goods.number,goods.name,goods.pinyin,goods.price,goods.describe,goods.state,goods.createtime,goods.updatetime";
             var from = " from goods";
