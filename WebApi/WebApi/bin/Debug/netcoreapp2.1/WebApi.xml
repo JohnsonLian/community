@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi.Api.GoodsController">
+            <summary>
+            商品的webapi
+            </summary>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.#ctor(WebApiIService.IGoodsService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="goodsService"></param>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.GetDetailById(System.Int32)">
+            <summary>
+            查询商品的详情
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.GetListForSelect(WebApi.Models.SearchGoodsModel)">
+            <summary>
+            搜索商品
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.Create(WebApi.Models.CreateGoodsModel)">
+            <summary>
+            新增商品
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.UpStack(System.Int32[])">
+            <summary>
+            上架商品
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.DownStack(System.Int32[])">
+            <summary>
+            下架商品
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.Update(WebApi.Models.UpdateGoodsModel)">
+            <summary>
+            修改商品
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.GoodsController.Delete(System.Int32)">
+            <summary>
+            删除商品
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Api.LabelController">
+            <summary>
+            商品标签的webapi
+            </summary>
+        </member>
+        <member name="M:WebApi.Api.LabelController.#ctor(WebApiIService.ILabelService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="labelService"></param>
+        </member>
+        <member name="M:WebApi.Api.LabelController.GetList">
+            <summary>
+            查询商品标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.LabelController.Create(System.String)">
+            <summary>
+            新增商品标签
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.LabelController.Update(WebApi.Models.UpdateModel)">
+            <summary>
+            修改商品标签
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Api.LabelController.Delete(System.Int32)">
+            <summary>
+            删除商品标签
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Models.CreateGoodsModel">
+            <summary>
+            商品Model
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.CreateGoodsModel.Number">
+            <summary>
+            商品编号
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.CreateGoodsModel.Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.CreateGoodsModel.Price">
+            <summary>
+            商品单价
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.CreateGoodsModel.Describe">
+            <summary>
+            商品描述
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.CreateGoodsModel.Tags">
+            <summary>
+            商品标签
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.SearchGoodsModel">
+            <summary>
+            搜索商品Model
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.SearchGoodsModel.Name">
+            <summary>
+            搜索框的内容
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.SearchGoodsModel.Label_id">
+            <summary>
+            标签id,null表示全部标签
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.SearchGoodsModel.State">
+            <summary>
+            0表示全部状态,1表示待上架，2表示已上架，3表示已下架
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.SearchGoodsModel.PageIndex">
+            <summary>
+            当前页数
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.SearchGoodsModel.PageSize">
+            <summary>
+            一页可容纳条数
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.UpdateGoodsModel">
+            <summary>
+            修改商品Model
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateGoodsModel.Id">
+            <summary>
+            商品id
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateGoodsModel.Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateGoodsModel.Price">
+            <summary>
+            商品单价
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateGoodsModel.Describe">
+            <summary>
+            商品描述
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateGoodsModel.Tags">
+            <summary>
+            商品标签
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.UpdateModel">
+            <summary>
+            商品标签Model
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateModel.Id">
+            <summary>
+            商品标签id
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.UpdateModel.Name">
+            <summary>
+            商品标签名称
+            </summary>
+        </member>
+    </members>
+</doc>
