@@ -42,7 +42,7 @@ namespace WebApiRepository.Entity
         /// <summary>
         /// 商品状态
         /// </summary>
-        public string State { get; set; }
+        public StateType State { get; set; } = StateType.BeforePutaway;
         /// <summary>
         /// 创建时间
         /// </summary>

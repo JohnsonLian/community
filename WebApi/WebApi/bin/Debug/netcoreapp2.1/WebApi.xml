@@ -132,6 +132,56 @@
             商品标签
             </summary>
         </member>
+        <member name="T:WebApi.Models.GoodsDetailModel">
+            <summary>
+            商品详情模型
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Id">
+            <summary>
+            商品id
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Number">
+            <summary>
+            商品编号
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Price">
+            <summary>
+            商品单价
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Describe">
+            <summary>
+            商品描述
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.State">
+            <summary>
+            商品状态
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Createtime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.GoodsDetailModel.Updatetime">
+            <summary>
+            最近更新时间
+            </summary>
+        </member>
         <member name="T:WebApi.Models.SearchGoodsModel">
             <summary>
             搜索商品Model

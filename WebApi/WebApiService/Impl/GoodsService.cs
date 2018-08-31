@@ -46,7 +46,6 @@ namespace WebApiService.Impl
                         Name = dto.Name,
                         Pinyin = PinYin.ConvertCh(dto.Name).ToLower(),
                         Price = dto.Price,
-                        State = "待上架",
                         Describe = dto.Describe,
                         Updatetime = DateTime.Now
                     };
@@ -144,7 +143,7 @@ namespace WebApiService.Impl
                 {
                     throw new Exception("商品不存在");
                 }
-                var update = $"UPDATE goods SET state= '已下架' WHERE id IN(0";
+                var update = $"UPDATE goods SET state= {StateType.Soldout} WHERE id IN(0";
                 foreach(var id in ids)
                 {
                     update = update + $",{id}";
@@ -168,7 +167,7 @@ namespace WebApiService.Impl
                 {
                     throw new Exception("商品不存在");
                 }
-                var update = $"UPDATE goods SET state= '已上架' WHERE id IN(0";
+                var update = $"UPDATE goods SET state= {StateType.Putaway} WHERE id IN(0";
                 foreach (var id in ids)
                 {
                     update = update + $",{id}";

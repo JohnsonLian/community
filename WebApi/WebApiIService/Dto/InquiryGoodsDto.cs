@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using WebApiRepository.Enum;
 
 namespace WebApiIService.Dto
 {
@@ -33,7 +34,7 @@ namespace WebApiIService.Dto
         /// <summary>
         /// 商品状态
         /// </summary>
-        public string State { get; set; }
+        public StateType State { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>

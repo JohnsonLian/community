@@ -38,7 +38,7 @@ namespace WebApiIService.Dto
         /// <summary>
         /// 商品状态
         /// </summary>
-        public string State { get; set; }
+        public StateType State { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>

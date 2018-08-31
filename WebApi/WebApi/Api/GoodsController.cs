@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
@@ -38,9 +41,25 @@ namespace WebApi.Api
         /// <returns></returns>
         [HttpGet]
         [Route("GetDetail")]
-        public GoodsDetailDto GetDetailById(int id)
+        public GoodsDetailModel GetDetailById(int id)
         {
-            return _service.GetDetailById(id);
+            var goods = _service.GetDetailById(id);
+            var type = goods.State.GetType();//先获取这个枚举的类型
+            var field = type.GetField(goods.State.ToString());//通过这个类型获取到值
+            var obj = (DescriptionAttribute)field.GetCustomAttribute(typeof(DescriptionAttribute));//得到特性
+            var name = obj.Description;
+            return new GoodsDetailModel
+            {
+                Id = goods.Id,
+                Number = goods.Number,
+                Name = goods.Name,
+                Price = goods.Price,
+                Describe = goods.Describe,
+                State = name,
+                Createtime = goods.Createtime,
+                Updatetime = goods.Updatetime,
+                Tags = goods.Tags
+            };
         }
 
         /// <summary>
