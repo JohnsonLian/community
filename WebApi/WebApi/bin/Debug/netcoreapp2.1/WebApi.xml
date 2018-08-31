@@ -149,7 +149,7 @@
         </member>
         <member name="P:WebApi.Models.SearchGoodsModel.State">
             <summary>
-            0表示全部状态,1表示待上架，2表示已上架，3表示已下架
+            1表示待上架，2表示已上架，3表示已下架
             </summary>
         </member>
         <member name="P:WebApi.Models.SearchGoodsModel.PageIndex">

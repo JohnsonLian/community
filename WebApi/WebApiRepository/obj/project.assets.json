@@ -4147,11 +4147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiRepository\\WebApiRepository.csproj",
+      "projectUniqueName": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiRepository\\WebApiRepository.csproj",
       "projectName": "WebApiRepository",
-      "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiRepository\\WebApiRepository.csproj",
+      "projectPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiRepository\\WebApiRepository.csproj",
       "packagesPath": "C:\\Users\\ThinkPad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi - 副本\\WebApiRepository\\obj\\",
+      "outputPath": "C:\\Users\\ThinkPad\\gitRepo\\community\\WebApi\\WebApiRepository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

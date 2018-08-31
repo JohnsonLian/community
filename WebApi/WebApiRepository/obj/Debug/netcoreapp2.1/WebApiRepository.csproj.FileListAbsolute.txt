@@ -23,3 +23,4 @@ C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiRepository\obj\Debug\n
 C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiRepository\obj\Debug\netcoreapp2.1\WebApiRepository.dll
 C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiRepository\obj\Debug\netcoreapp2.1\WebApiRepository.pdb
 C:\Users\ThinkPad\gitRepo\community\WebApi - 副本\WebApiRepository\obj\Debug\netcoreapp2.1\WebApiRepository.csprojAssemblyReference.cache
+C:\Users\ThinkPad\gitRepo\community\WebApi\WebApiRepository\obj\Debug\netcoreapp2.1\WebApiRepository.csprojAssemblyReference.cache
