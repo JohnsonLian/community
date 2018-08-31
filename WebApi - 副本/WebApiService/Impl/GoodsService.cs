@@ -10,6 +10,7 @@ using WebApiIService;
 using WebApiIService.Dto;
 using WebApiRepository;
 using WebApiRepository.Entity;
+using WebApiRepository.Enum;
 using WebApiService.Tool;
 
 namespace WebApiService.Impl
@@ -45,8 +46,8 @@ namespace WebApiService.Impl
                         Name = dto.Name,
                         Pinyin = PinYin.ConvertCh(dto.Name).ToLower(),
                         Price = dto.Price,
-                        Describe = dto.Describe,
                         State = "待上架",
+                        Describe = dto.Describe,
                         Updatetime = DateTime.Now
                     };
                     commodityDbContext.GoodsRepos.Add(goods);
@@ -239,14 +240,14 @@ namespace WebApiService.Impl
                 var from = " from goods";
                 var where = " where 1=1 ";
                 var order = $" order by goods.updatetime desc limit {(dto.PageIndex - 1) * dto.PageSize},{dto.PageSize}";
-                if (dto.Label_id > 0)
+                if (dto.Label_id != null)
                 {
                     from = from + @" inner join label_goods on goods.id = label_goods.goods_id ";
                     where = where + $" and label_goods.label_id={dto.Label_id}";
                 }
-                if (dto.State != 0)
+                if (Enum.IsDefined(typeof(StateType), dto.State))
                 {
-                    where = where + $" and goods.state={dto.State}";
+                    where = where + $" and goods.state={(int)dto.State}";
                 }
                 if (dto.Name != null)
                 {

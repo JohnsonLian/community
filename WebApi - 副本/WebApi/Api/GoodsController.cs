@@ -7,6 +7,7 @@ using WebApi.Models;
 using WebApiIService;
 using WebApiIService.Dto;
 using WebApiRepository.Entity;
+using WebApiRepository.Enum;
 using WebApiService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,16 +52,6 @@ namespace WebApi.Api
         [Route("GetList")]
         public List<GoodsRepo> GetListForSelect(SearchGoodsModel dto)
         {
-            //标签id获取出错，请求失败
-            if (dto.Label_id < 0)
-            {
-                throw new Exception("请求失败");
-            }
-            //商品状态获取出错，请求失败,0表示全部状态，1表示待上架，2表示已上架，3表示已下架
-            if (dto.State != 0 && dto.State != 1 && dto.State != 2 && dto.State != 3)
-            {
-                throw new Exception("请求失败");
-            }
             return _service.GetListForSelect(new SearchGoodsDto
             {
                 Name = dto.Name,

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WebApiRepository.Enum;
 
 namespace WebApiIService.Dto
 {
@@ -16,11 +17,11 @@ namespace WebApiIService.Dto
         /// <summary>
         /// 标签id
         /// </summary>
-        public int Label_id { get; set; }
+        public int? Label_id { get; set; }
         /// <summary>
         /// 商品状态
         /// </summary>
-        public int State { get; set; }
+        public StateType State { get; set; }
         /// <summary>
         /// 当前页数
         /// </summary>

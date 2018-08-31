@@ -144,12 +144,12 @@
         </member>
         <member name="P:WebApi.Models.SearchGoodsModel.Label_id">
             <summary>
-            标签id,0表示全部标签
+            标签id,null表示全部标签
             </summary>
         </member>
         <member name="P:WebApi.Models.SearchGoodsModel.State">
             <summary>
-            0表示全部状态，1表示待上架，2表示已上架，3表示已下架
+            0表示全部状态,1表示待上架，2表示已上架，3表示已下架
             </summary>
         </member>
         <member name="P:WebApi.Models.SearchGoodsModel.PageIndex">

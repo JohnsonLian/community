@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using WebApiRepository.Enum;
 
 namespace WebApi.Models
 {
@@ -13,13 +14,13 @@ namespace WebApi.Models
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 标签id,0表示全部标签
+        /// 标签id,null表示全部标签
         /// </summary>
-        public int Label_id { get; set; }
+        public int? Label_id { get; set; }
         /// <summary>
-        /// 0表示全部状态，1表示待上架，2表示已上架，3表示已下架
+        /// 1表示待上架，2表示已上架，3表示已下架
         /// </summary>
-        public int State { get; set; }
+        public StateType State { get; set; }
         /// <summary>
         /// 当前页数
         /// </summary>
